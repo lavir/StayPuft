@@ -517,6 +517,7 @@ margin on the iframe, cause it breaks stuff. */
     font-size: 14px;
     line-height: 1.4em;
     color: #9EABB3;
+    cursor: pointer;
 }
 
 .post-meta a {
