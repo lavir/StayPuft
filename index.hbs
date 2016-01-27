@@ -27,7 +27,12 @@
         {{content}}
     </section>
     <footer class="post-indexfooter">
-        <i class="fa fa-comment-o"></i> <a href="{{url}}#fb_thread">Comments</a>
+      <div class="post-share-container">
+        <div class="fb-like" data-href="http://kunminustatuliaiti.fi{{url}}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+      </div>
+      <div class="post-comment-container">
+        <i class="fa fa-comment-o"></i> <a href="{{url}}#fb_thread"><span class="fb-comments-count" data-href="http://kunminustatuliaiti.fi{{url}}"></span> comments</a>
+      </div>
     </footer>
 </article>
 
@@ -35,16 +40,3 @@
 
 {{!! After all the posts, we have the previous/next pagination links }}
 {{pagination}}
-
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    {{> disqus}}
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>

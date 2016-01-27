@@ -444,6 +444,7 @@ margin on the iframe, cause it breaks stuff. */
 .blog-title {
     margin: 0 0 10px 0;
     color: white;
+    font-size: 2.5rem;
     font-weight: bold;
     font-family: 'Open Sans', sans-serif;
     text-shadow: 0 1px 6px rgba(0,0,0,0.1);
@@ -457,7 +458,7 @@ margin on the iframe, cause it breaks stuff. */
 
 .blog-description {
     color: #BBC4C9;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     line-height: 1.3em;
     font-weight: 300;
     font-family: 'Open Sans', sans-serif;
@@ -471,7 +472,6 @@ margin on the iframe, cause it breaks stuff. */
     max-width: inherit;
     border-bottom: #EBF2F6 1px solid;
     word-wrap: break-word;
-    margin-bottom: 2rem;
 }
 
 /* Add a little circle in the middle of the border-bottom on our .post
@@ -622,6 +622,7 @@ main
     -moz-box-sizing:border-box;
     padding-left: 10px;
     padding-right: 30px;
+    outline: none;
 }
 
 #search:before {
@@ -672,12 +673,12 @@ main
     color: #BBB;
 }
 
-#sidebar-links
+.sidebar-links
 {
     text-overflow: ellipsis;
 }
 
-#sidebar-links ul
+.sidebar-links ul
 {
     color: #BBC4C9;
     font-size: 13px;
@@ -685,36 +686,60 @@ main
     padding: 0;
 }
 
-#sidebar-links i
+.sidebar-links i
 {
     width: 20px;
     font-size: 14px;
 }
 
-#sidebar-links a
+.sidebar-links a
 {
     color: #BBC4C9;
     text-decoration: none;
 }
 
-#sidebar-links a:hover
+.sidebar-links a:hover
 {
     color: white;
 }
 
-.post-indexfooter
+#navigation {
+    margin-bottom: 0;
+}
+.post-indexfooter,
+.post-footer
 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: center;
     font-size: 14px;
     margin: 2rem 0;
 }
+.post-indexfooter > div,
+.post-footer > section {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    line-height: 0;
+}
+
+.post-indexfooter .post-share-container iframe,
+.post-footer .post-share-container iframe {
+    margin: 0;
+}
 
 .post-indexfooter i
+.post-footer i
 {
     width: 18px;
     font-size: 14px;
 }
 
 .post-indexfooter a
+.post-footer a
 {
     font-weight: bold;
     text-decoration: none;
@@ -776,13 +801,24 @@ main
 /* Tweak the .post wrapper style */
 .post-template .post {
     margin-top: 0;
-    border-bottom: none;
+    border-bottom: #EBF2F6 1px solid;
     padding-bottom: 0;
 }
 
 /* Kill that stylish little circle that was on the border, too */
 .post-template .post:after {
-    display: none;
+    display: block;
+    content: "";
+    width: 7px;
+    height: 7px;
+    border: #E7EEF2 1px solid;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    margin-left: -5px;
+    background: #fff;
+    border-radius: 100%;
+    box-shadow: #fff 0 0 0 5px;
 }
 
 /* Stop elements, such as img wider than the post content, from 
@@ -831,9 +867,7 @@ main
 
 /* The author credit area after the post */
 .post-footer {
-    position: relative;
-    margin: 4rem 0 4rem 0;
-    padding: 4rem 0 0 0;
+    margin: 4rem 0 0 0;
     border-top: #EBF2F6 1px solid;
     border-bottom: #EBF2F6 1px solid;
 }
@@ -870,6 +904,7 @@ main
 /* Create some space to the right for the share links */
 .post-footer .author {
     margin-right: 180px;
+    min-height: 45px;
 }
 
 /* Drop the share links in the space to the right.
@@ -877,9 +912,6 @@ main
    to be flexible at smaller screen sizes while the share
    links remain at a fixed width the whole time */
 .post-footer .share {
-    position: absolute;
-    top: 3rem;
-    right: 0;
     width: 140px;
     text-align: center;
 }
@@ -887,7 +919,7 @@ main
 .post-footer .share a {
     font-size: 3rem;
     display: inline-block;
-    margin: 1rem 1.6rem 1.6rem 0;
+    margin: 1.6rem 1.6rem 1.6rem 0;
     color: #BBC7CC;
     text-decoration: none;
 }
@@ -1232,6 +1264,9 @@ main
     margin-bottom: 1.75em;
 }
 
+.facebook-page {
+    margin-bottom: 40px;
+}
 /* ==========================================================================
    9. Pagination - Tools to let you flick between pages
    ========================================================================== */
@@ -1421,7 +1456,7 @@ main
         width: 100%;
     }
 
-    #sidebar-links li {
+    .sidebar-links li {
         display: inline-block;
         margin: 0px 4px;
     }

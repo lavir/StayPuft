@@ -2,113 +2,133 @@
 <html>
 
 <head>
-    {{! Document Settings }}
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  {{! Document Settings }}
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
-    {{! Page Meta }}
-    <title>{{meta_title}}</title>
-    <meta name="description" content="{{meta_description}}" />
+  {{! Page Meta }}
+  <title>{{meta_title}}</title>
+  <meta name="description" content="{{meta_description}}"/>
 
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="HandheldFriendly" content="True"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    {{#if @blog.logo}}<link rel="shortcut icon" href="{{@blog.logo}}">{{/if}}
+  {{#if @blog.logo}}
+    <link rel="shortcut icon" href="{{@blog.logo}}">{{/if}}
 
-    {{! Styles'n'Scripts }}
-    <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}" />
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  {{! Styles'n'Scripts }}
+  <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}"/>
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
-    {{! Ghost outputs important style and meta data with this tag }}
-    {{ghost_head}}
+  {{! Ghost outputs important style and meta data with this tag }}
+  {{ghost_head}}
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" type="text/css" href="{{asset "css/prism.css"}}" />
+  <link rel="stylesheet" type="text/css" href="{{asset "css/prism.css"}}"/>
 </head>
 
 <body class="{{body_class}}">
 
-    <div id="sidebar" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
-        <div id="sidebar-content" class="inner">
-            {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>{{/if}}
-            <h2 class="blog-title"><a href="{{@blog.url}}">{{@blog.title}}</a></h2>
-            <h3 class="blog-description">{{@blog.description}}</h3>
+<div id="sidebar" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
+  <div id="sidebar-content" class="inner">
+    {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}"
+                                                                     alt="{{@blog.title}}"/></a>{{/if}}
+    <h2 class="blog-title"><a href="{{@blog.url}}">{{@blog.title}}</a></h2>
+    <h3 class="blog-description">
+      {{! Due limit in 200 chanracters in blog decsription, lets use template for this}}
+      {{!--{{@blog.description}}--}}
+      {{> blog-description}}
+    </h3>
 
-            <form id="search">
-                <input id="search-field" placeholder="Search"/>
-            </form>
-
-            <div id="sidebar-links">
-                <ul id="subscription-links">
-                    <li><a target="_blank" href="{{@blog.url}}/rss/"><i class="fa fa-rss"></i>Subscribe via RSS</a></li>
-                    <!-- No support yet
-                    <li><a target="_blank" href=" "><i class="fa fa-envelope"></i>Subscribe via email<a></li>
-                    -->
-                </ul>
-                <ul id="navigation">
-                    {{navigation}}
-                </ul>
-                <ul id="sidebar-external">
-                    {{> sidebar-external}}
-                </ul>
-            </div>
-
-            <footer class="site-footer">
-                <section class="copyright">{{> copyright}}</section>
-                <section class="poweredby">
-                    <i class="icon-ghost"></i><a href="https://ghost.org">Ghost</a> -
-                    <a href="https://github.com/dlecina/StayPuft">StayPuft theme</a>
-                </section>
-            </footer>
-        </div>
+    <form id="search">
+      <input id="search-field" placeholder="Search"/>
+    </form>
+    <div class="sidebar-links">
+      <ul id="navigation">
+        {{navigation}}
+      </ul>
     </div>
 
-    <main>
-        <div class="main-inner">
-            <section id="results"></section>
-            {{{body}}}
-        </div>
-    </main>
+    <div class="facebook-page">
+      {{> facebook-page}}
+    </div>
 
-    {{! Ghost outputs important scripts and data with this tag }}
-    {{ghost_foot}}
+    <div class="sidebar-links">
+      <ul id="sidebar-external">
+        {{> sidebar-external}}
+      </ul>
+      <ul id="subscription-links">
+        <li><a target="_blank" href="{{@blog.url}}/rss/"><i class="fa fa-rss"></i>Subscribe via RSS</a></li>
+        <li><a href="{{@blog.url}}/ghost/"><i class="fa fa-sign-in"></i>Log-in</a></li>
+      </ul>
+    </div>
 
-    <script type="text/javascript" src="{{asset "js/jquery-1.11.3.min.js"}}"></script>
-    <script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
-    <script type="text/javascript" src="{{asset "js/index.js"}}"></script>
-    <script type="text/javascript" src="{{asset "js/prism-loader.js"}}"></script>
-    <script type="text/javascript" src="{{asset "js/prism.js"}}"></script>
-    <script src="{{asset "js/jquery.ghostHunter.min.js"}}"></script>
-    <script>
-        $("#search-field").ghostHunter({
-            rss : "{{@blog.url}}/rss/",
-            results : "#results",
-            onKeyUp : true,
-            zeroResultsInfo : false
-        });
-    </script>
+    <footer class="site-footer">
+      <section class="copyright">{{> copyright}}</section>
+      <section class="poweredby">
+        <i class="icon-ghost"></i><a href="https://ghost.org">Ghost</a> -
+        <a href="https://github.com/dlecina/StayPuft">StayPuft theme</a>
+      </section>
+    </footer>
+  </div>
+</div>
 
-    {{! Facebook connect}}
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/fi_FI/sdk.js#xfbml=1&version=v2.5";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+<main>
+  <div class="main-inner">
+    <section id="results"></section>
+    {{{body}}}
+  </div>
+</main>
 
+{{! Ghost outputs important scripts and data with this tag }}
+{{ghost_foot}}
+<script type="text/javascript" src="{{asset "js/jquery-1.11.3.min.js"}}"></script>
+<script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
+<script type="text/javascript" src="{{asset "js/index.js"}}"></script>
+<script type="text/javascript" src="{{asset "js/prism-loader.js"}}"></script>
+<script type="text/javascript" src="{{asset "js/prism.js"}}"></script>
+<script src="{{asset "js/jquery.ghostHunter.min.js"}}"></script>
+<script>
+  $("#search-field").ghostHunter({
+    rss: "{{@blog.url}}/rss/",
+    results: "#results",
+    onKeyUp: true,
+    zeroResultsInfo: false
+  });
+</script>
+
+{{! Facebook connect}}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "//connect.facebook.net/fi_FI/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+{{#ifIsDev false}}
     {{! Google Analytics}}
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-      ga('create', 'UA-72823514-1', 'auto');
-      ga('send', 'pageview');
+        ga('create', 'UA-72823514-1', 'auto');
+        ga('send', 'pageview');
     </script>
+{{/ifIsDev}}
+
 </body>
 
 </html>
