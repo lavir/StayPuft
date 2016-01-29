@@ -1058,23 +1058,23 @@ main {
     box-shadow: #ffffff 0 0 0 5px;
 }
 
-/* Stop elements, such as img wider than the post content, from 
-   creating horizontal scroll - slight hack due to imperfections 
+/* Stop elements, such as img wider than the post content, from
+   creating horizontal scroll - slight hack due to imperfections
    with browser width % calculations and rounding */
 .post-template .content {
     overflow: hidden;
 }
 
-/* Keep images centered, and allow images wider than the main 
+/* Keep images centered, and allow images wider than the main
    text column to break out. */
 .post-content img {
     display: block;
     max-width: 126%;
     height: auto;
     padding: 0.6em 0;
-    /* Centers an image by (1) pushing its left edge to the 
-       center of its container and (2) shifting the entire image 
-       in the opposite direction by half its own width. 
+    /* Centers an image by (1) pushing its left edge to the
+       center of its container and (2) shifting the entire image
+       in the opposite direction by half its own width.
        Works for images that are larger than their containers. */
     position: relative;
     left: 50%;
@@ -1902,7 +1902,7 @@ main {
 
 .slider-up-down {
     overflow-y: hidden;
-    max-height: 235px;
+    max-height: 250px;
     transition-property: all;
     transition-duration: .5s;
     transition-timing-function: ease-in-out;
